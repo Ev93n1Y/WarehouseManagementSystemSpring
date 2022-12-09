@@ -1,4 +1,4 @@
-package model.dao;
+package application.model.dao;
 
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
@@ -34,4 +34,9 @@ public class RoleDao {
             joinColumns = @JoinColumn(name = "role_id")
     )
     private Set<UserDao> users;
+
+    public RoleDao(UUID id, String role) {
+        this.id = id;
+        this.role = role;
+    }
 }

@@ -1,4 +1,4 @@
-package model.dao;
+package application.model.dao;
 
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
@@ -34,6 +34,12 @@ public class ProductDao {
     )
     @JoinColumn(name = "producer_id")
     private ProducerDao producer;
+
+    public ProductDao(UUID id, String name, BigDecimal price) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+    }
 
     /*CREATE TABLE products
             (

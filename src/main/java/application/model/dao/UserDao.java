@@ -1,4 +1,4 @@
-package model.dao;
+package application.model.dao;
 
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
@@ -44,4 +44,12 @@ public class UserDao {
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Set<RoleDao> roles;
+
+    public UserDao(UUID id, String email, String password, String firstName, String lastName) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 }

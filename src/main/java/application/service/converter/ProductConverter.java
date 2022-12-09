@@ -5,7 +5,7 @@ import application.model.dto.ProductDto;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ProductConverter implements Convertable<ProductDto, ProductDao> {
+public class ProductConverter implements Convertible<ProductDto, ProductDao> {
     @Override
     public ProductDto toDto(final ProductDao productDao) {
         ProductDto productDto = new ProductDto();

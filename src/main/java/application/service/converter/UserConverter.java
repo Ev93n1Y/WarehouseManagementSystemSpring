@@ -3,7 +3,7 @@ package application.service.converter;
 import application.model.dao.UserDao;
 import application.model.dto.UserDto;
 
-public class UserConverter implements Convertable<UserDto, UserDao> {
+public class UserConverter implements Convertible<UserDto, UserDao> {
     @Override
     public UserDto toDto(final UserDao productDao) {
         UserDto userDto = new UserDto();

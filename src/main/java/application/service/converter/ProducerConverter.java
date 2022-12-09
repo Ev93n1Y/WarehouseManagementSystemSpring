@@ -5,7 +5,7 @@ import application.model.dto.ProducerDto;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ProducerConverter implements Convertable<ProducerDto, ProducerDao> {
+public class ProducerConverter implements Convertible<ProducerDto, ProducerDao> {
     @Override
     public ProducerDto toDto(final ProducerDao producerDao) {
         ProducerDto producerDto = new ProducerDto();

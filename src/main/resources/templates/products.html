@@ -14,6 +14,7 @@
                         <th>id</th>
                         <th>name</th>
                         <th>price</th>
+                        <th>producer</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -21,24 +22,34 @@
                         <td th:text="${product.id}"></td>
                         <td th:text="${product.name}"></td>
                         <td th:text="${product.price}"></td>
+                        <td th:text="${product.producer}"></td>
                         <td>
-                            <a th:href="@{/products/update(id=${product.id})}">Edit</a>
+                            <button th:edit-url="@{/products/update(id=${product.id})}"
+                                    onclick="window.open(this.getAttribute('edit-url'))">
+                                Edit
+                            </button>
                         </td>
                         <td>
-                            <button onclick="window.location.href = 'https://w3docs.com';">Delete</button>
-                            <a th:href="@{/products/delete(id=${product.id})}">Delete</a>
+                            <button th:del-url="@{/products/delete(id=${product.id})}"
+                                    onclick="window.open(this.getAttribute('del-url'))">
+                                Delete
+                            </button>
                         </td>
 
                     </tr>
                 </tbody>
             </table>
-        </div>
+        </div><br>
         <form action="/products" method="POST">
             <label>New product name: </label>
             <input type="text" name="name"><br>
             <label>price: </label>
-            <input type="number" name="price" style="margin-left: 90px;width:130px">
+            <input type="number" name="price" step="0.01" min="0"  max="9999999999" style="margin-left:90px; width:140px">
             <button type="submit">Add product</button><br>
+            <select name="producer" style="width:140px; margin-left:80px">
+                <option value="0">select option</option>
+                <option th:each="producer : ${producers}" th:value="${producer}" th:text="${producer}"></option>
+            </select>
         </form>
     </div>
 </body>

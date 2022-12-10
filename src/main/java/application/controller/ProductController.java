@@ -1,81 +1,65 @@
 package application.controller;
 
 import application.model.dto.ProductDto;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import application.service.ProducerService;
 import application.service.ProductService;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.UUID;
 
 @Controller
 @RequestMapping("/products")
 @RequiredArgsConstructor
-public class ProductController {
+public class ProductController implements CrudController<ProductDto> {
     private final ProductService service;
-    private final ProducerService producerService;
+    //private final ProducerService producerService;
 
     @GetMapping
-    public ModelAndView getProducts() {
+    @Override
+    public ModelAndView get() {
         ModelAndView result = new ModelAndView("products");
-        result.addObject("products", service.findAll());
-        return result;
-    }
-
-    @GetMapping("/create")
-    public ModelAndView getCreateForm() {
-        ModelAndView result = new ModelAndView("createProductForm");
-        result.addObject("producers", producerService.findAll());
-        return result;
-    }
-
-    @GetMapping("/{id}")
-    public ModelAndView getProductById(@PathVariable("id") UUID id) {
-        ModelAndView result = new ModelAndView("productEditForm");
-        result.addObject("product", service.findById(id));
-        result.addObject("producers", producerService.findAll());
-        return result;
-    }
-
-    @PutMapping("/{id}")
-    public ProductDto update(/*@Valid*/ @RequestBody ProductDto productDto, /*BindingResult result,*/
-                                        @PathVariable("id") UUID id) {
-       /* if (result.hasErrors()){
-            return "productEditForm";
-        }*/
-
-        //productDto.setProducer(producerService.findById(productDto.getProducer_id()));
-        return service.save(id, productDto);
-    }
-
-    @PostMapping("/create")
-    public ProductDto create(@Valid @ModelAttribute("product") ProductDto productDto/*, BindingResult result*/) {
-        productDto.setProducer(producerService.findById(productDto.getProducer_id()));
-        return service.save(productDto);
-        //return "redirect:/products/" + id;
-    }
-
-    @DeleteMapping("/{id}")
-    public ProductDto delete(@PathVariable("id") UUID id) {
-        ProductDto dto = service.findById(id);
         try {
-
-            service.deleteById(id);
+            result.addObject("products", service.findAll());
         } catch (Exception e) {
             e.printStackTrace();
         }
-        //(dto==null)? new ProductDto() : service.deleteById(id);
-        //return service.deleteById(id);
-        //return getProducts();
-        return (dto == null) ? new ProductDto() : dto;
+        return result;
     }
 
-    @ModelAttribute("product")
-    private ProductDto getDefaultProduct() {
-        return new ProductDto();
+    @PostMapping
+    @Override
+    public RedirectView add(@ModelAttribute("product") ProductDto product) {
+        try {
+            service.save(product);
+        } catch (Exception e) {
+            e.printStackTrace();
+            //TODO check duplicate entries
+        }
+        return redirectToProductsList();
     }
 
+    @GetMapping("/delete")
+    @Override
+    public RedirectView delete(@RequestParam(name = "id") UUID id) {
+        service.deleteById(id);
+        return redirectToProductsList();
+    }
+
+    @GetMapping("/update")
+    @Override
+    public RedirectView update(@RequestParam(name = "id") UUID id) {
+        ProductDto dto = new ProductDto();
+        //TODO required update form, temporary works with static new name
+        dto.setName("some changed name1");
+        service.save(id, dto);
+        return redirectToProductsList();
+
+    }
+
+    private RedirectView redirectToProductsList() {
+        return new RedirectView("/products");
+    }
 }

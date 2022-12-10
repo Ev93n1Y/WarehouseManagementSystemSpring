@@ -4,5 +4,39 @@
     <title>Products</title>
 </head>
 <body>
+    <div th:switch="${products}">
+        <h2 th:case="null">There is no products!</h2>
+        <div th:case="*">
+            <h2>Products</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>name</th>
+                        <th>price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="product : ${products}">
+                        <td th:text="${product.id}"></td>
+                        <td th:text="${product.name}"></td>
+                        <td th:text="${product.price}"></td>
+                        <td>
+                            <a th:href="@{/products/update(id=${product.id})}">Edit</a>
+                        </td>
+                        <td>
+                            <a th:href="@{/products/delete(id=${product.id})}">Delete</a>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <form action="/products" method="POST">
+            <label>New product name: </label>
+            <input type="text" name="name">
+            <button type="submit">Add product</button>
+        </form>
+    </div>
 </body>
 </html>

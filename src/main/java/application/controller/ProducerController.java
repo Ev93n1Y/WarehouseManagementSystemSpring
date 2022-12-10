@@ -24,7 +24,7 @@ public class ProducerController implements CrudController<ProducerDto> {
         return result;
     }
 
-    @PostMapping()
+    @PostMapping
     @Override
     public RedirectView add(@ModelAttribute("producer") ProducerDto producer) {
         try {
@@ -57,12 +57,4 @@ public class ProducerController implements CrudController<ProducerDto> {
     private RedirectView redirectToProducersList() {
         return new RedirectView("/producers");
     }
-
-
-    /*//check code below//
-    @ModelAttribute("producer")
-    @ResponseBody
-    public ProducerDto getDefaultProducer() {
-        return new ProducerDto();
-    }*/
 }

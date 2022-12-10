@@ -11,16 +11,30 @@
             <table>
                 <thead>
                 <tr>
-                    <th>Name</th>
+                    <th>id</th>
+                    <th>name</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="producer : ${producers}">
+                    <td th:text="${producer.id}"></td>
+                    <td th:text="${producer.name}"></td>
+                    <td>
+                        <a th:href="@{/producers/update(id=${producer.id})}">Edit</a>
+                    </td>
+                    <td>
+                        <a th:href="@{/producers/delete(id=${producer.id})}">Delete</a>
+                    </td>
+
                 </tr>
                 </tbody>
             </table>
         </div>
-        <p><a href="/producers/create">Add a new producer</a></p>
+        <form action="/producers" method="POST">
+            <label>Producer name: </label>
+            <input type="text" name="name">
+            <button type="submit">Add producer</button>
+        </form>
     </div>
 </body>
 </html>

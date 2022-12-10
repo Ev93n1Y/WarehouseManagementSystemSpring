@@ -1,7 +1,7 @@
 CREATE TABLE producers
 (
     id   UUID         PRIMARY KEY ,
-    name VARCHAR(100) NOT NULL
+    name VARCHAR(100) NOT NULL UNIQUE
 );
 
 CREATE TABLE products
@@ -15,8 +15,7 @@ CREATE TABLE products
 CREATE TABLE roles
 (
     id   UUID         PRIMARY KEY ,
-    role VARCHAR(100) NOT NULL,
-	CONSTRAINT uc_roles_role UNIQUE (role)
+    role VARCHAR(100) NOT NULL UNIQUE
 );
 
 CREATE TABLE users

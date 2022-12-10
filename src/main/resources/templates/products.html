@@ -8,7 +8,7 @@
         <h2 th:case="null">There is no products!</h2>
         <div th:case="*">
             <h2>Products</h2>
-            <table>
+            <table style="text-align: center" border="1" width="20%">
                 <thead>
                     <tr>
                         <th>id</th>
@@ -25,6 +25,7 @@
                             <a th:href="@{/products/update(id=${product.id})}">Edit</a>
                         </td>
                         <td>
+                            <button onclick="window.location.href = 'https://w3docs.com';">Delete</button>
                             <a th:href="@{/products/delete(id=${product.id})}">Delete</a>
                         </td>
 
@@ -34,8 +35,10 @@
         </div>
         <form action="/products" method="POST">
             <label>New product name: </label>
-            <input type="text" name="name">
-            <button type="submit">Add product</button>
+            <input type="text" name="name"><br>
+            <label>price: </label>
+            <input type="number" name="price" style="margin-left: 90px;width:130px">
+            <button type="submit">Add product</button><br>
         </form>
     </div>
 </body>

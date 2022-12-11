@@ -1,6 +1,11 @@
 package application.controller;
 
+import application.model.dao.ProducerDao;
+import application.model.dto.ProducerDto;
 import application.model.dto.ProductDto;
+import application.service.ProducerService;
+import application.service.converter.ProducerConverter;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -13,9 +18,10 @@ import java.util.UUID;
 @Controller
 @RequestMapping("/products")
 @RequiredArgsConstructor
+@RestController
 public class ProductController implements CrudController<ProductDto> {
     private final ProductService service;
-    //private final ProducerService producerService;
+    private final ProducerService producerService;
 
     @GetMapping
     @Override
@@ -23,22 +29,42 @@ public class ProductController implements CrudController<ProductDto> {
         ModelAndView result = new ModelAndView("products");
         try {
             result.addObject("products", service.findAll());
+            result.addObject("producers", producerService.findAll());
         } catch (Exception e) {
             e.printStackTrace();
         }
         return result;
     }
 
-    @PostMapping
     @Override
-    public RedirectView add(@ModelAttribute("product") ProductDto product) {
+    public RedirectView add(ProductDto productDto) {
+        return null;
+    }
+
+    @PostMapping
+    public RedirectView add(@ModelAttribute("product") ProductDto product, @ModelAttribute("producerId") UUID id) {
         try {
-            service.save(product);
+            System.err.println(id);
+            //System.out.println(producer);
+            //product.setProducer(new ProducerConverter().toDao(producer));
+            //service.save(product);
         } catch (Exception e) {
             e.printStackTrace();
             //TODO check duplicate entries
         }
-        return redirectToProductsList();
+        //return redirectToProductsList();
+        return redirect("/product");
+    }
+
+    @GetMapping("/add")
+    public ModelAndView addForm() {
+        ModelAndView result = new ModelAndView("productForm");
+        try {
+            result.addObject("producers", producerService.findAll());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
     @GetMapping("/delete")
@@ -59,7 +85,13 @@ public class ProductController implements CrudController<ProductDto> {
 
     }
 
+
     private RedirectView redirectToProductsList() {
-        return new RedirectView("/products");
+        //return new RedirectView("/products");
+        return redirect("/products");
+    }
+
+    private RedirectView redirect(String path) {
+        return new RedirectView(path);
     }
 }

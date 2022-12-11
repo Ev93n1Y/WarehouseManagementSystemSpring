@@ -1,15 +1,15 @@
 package application.model.dto;
 
+import application.model.dao.ProductDao;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
+import java.util.Set;
 import java.util.UUID;
 
 @NoArgsConstructor
+//@AllArgsConstructor
 @EqualsAndHashCode
 @Data
 @ToString
@@ -19,4 +19,6 @@ public class ProducerDto {
     @NotBlank(message = "Name can't be blank")
     @Size(max = 100)
     private String name;
+
+    private Set<ProductDao> products;
 }

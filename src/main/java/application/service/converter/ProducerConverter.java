@@ -11,14 +11,21 @@ public class ProducerConverter implements Convertible<ProducerDto, ProducerDao> 
         ProducerDto producerDto = new ProducerDto();
         producerDto.setId(producerDao.getId());
         producerDto.setName(producerDao.getName());
+        producerDto.setProducts(producerDao.getProducts());
         return producerDto;
+        /*return new ProducerDto(
+                producerDao.getId(),
+                producerDao.getName(),
+                producerDao.getProducts()
+        );*/
     }
 
     @Override
     public ProducerDao toDao(final ProducerDto producerDto) {
         return new ProducerDao(
                 producerDto.getId(),
-                producerDto.getName()
+                producerDto.getName(),
+                producerDto.getProducts()
         );
     }
 }

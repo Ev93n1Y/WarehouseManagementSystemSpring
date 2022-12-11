@@ -1,5 +1,6 @@
 package application.model.dto;
 
+import application.model.dao.ProducerDao;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -10,6 +11,7 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 @NoArgsConstructor
+//@AllArgsConstructor
 @EqualsAndHashCode
 @Data
 @ToString
@@ -24,10 +26,8 @@ public class ProductDto {
     @Digits(integer = 10, fraction = 2)
     private BigDecimal price;
 
-    @Getter
-    @NotNull(message = "Producer must be select")
-    private UUID producer_id;
+    //@NotNull(message = "Producer must be select")
+    //private UUID producer_id;
 
-    @Getter
-    private ProducerDto producer;
+    private ProducerDao producer;
 }

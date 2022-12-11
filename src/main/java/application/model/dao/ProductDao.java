@@ -1,10 +1,7 @@
 package application.model.dao;
 
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.math.BigDecimal;
@@ -28,17 +25,19 @@ public class ProductDao {
     @Column(name = "price", precision = 10, scale = 2, nullable = false)
     private BigDecimal price;
 
+    @Setter
     @ManyToOne(
-            fetch = FetchType.LAZY,
+            fetch = FetchType.EAGER,
             cascade = {CascadeType.PERSIST}
     )
     @JoinColumn(name = "producer_id")
     private ProducerDao producer;
 
-    public ProductDao(UUID id, String name, BigDecimal price) {
+    public ProductDao(UUID id, String name, BigDecimal price, ProducerDao producer) {
         this.id = id;
         this.name = name;
         this.price = price;
+        this.producer = producer;
     }
 
     /*CREATE TABLE products

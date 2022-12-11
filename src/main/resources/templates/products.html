@@ -7,7 +7,10 @@
     <div th:switch="${products}">
         <h2 th:case="null">There is no products!</h2>
         <div th:case="*">
-            <h2>Products</h2>
+            <h2>Products</h2><hr>
+            <form action="/products/add" method="GET">
+                <button type="submit">Add new product</button><br>
+            </form>
             <table style="text-align: center" border="1" width="20%">
                 <thead>
                     <tr>
@@ -35,7 +38,6 @@
                                 Delete
                             </button>
                         </td>
-
                     </tr>
                 </tbody>
             </table>
@@ -47,7 +49,6 @@
             <input type="number" name="price" step="0.01" min="0"  max="9999999999" style="margin-left:90px; width:140px">
             <button type="submit">Add product</button><br>
             <select name="producer" style="width:140px; margin-left:80px">
-                <option value="0">select option</option>
                 <option th:each="producer : ${producers}" th:value="${producer}" th:text="${producer}"></option>
             </select>
         </form>

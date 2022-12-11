@@ -1,10 +1,7 @@
 package application.model.dao;
 
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Set;
@@ -26,15 +23,17 @@ public class ProducerDao {
     )
     private String name;
 
+    @Setter
     @OneToMany(
-            fetch = FetchType.LAZY,
+            fetch = FetchType.EAGER,
             cascade = {CascadeType.PERSIST}
     )
     @JoinColumn(name = "producer_id")
     private Set<ProductDao> products;
 
-    public ProducerDao(UUID id, String name) {
+    public ProducerDao(UUID id, String name, Set<ProductDao> products) {
         this.id = id;
         this.name = name;
+        this.products = products;
     }
 }

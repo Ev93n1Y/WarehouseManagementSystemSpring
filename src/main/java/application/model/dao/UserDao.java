@@ -1,10 +1,7 @@
 package application.model.dao;
 
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Set;
@@ -34,8 +31,9 @@ public class UserDao {
     @Column(name = "last_name", length = 100)
     private String lastName;
 
+    @Setter
     @ManyToMany(
-            fetch = FetchType.LAZY,
+            fetch = FetchType.EAGER,
             cascade = {CascadeType.PERSIST, CascadeType.MERGE}
     )
     @JoinTable(

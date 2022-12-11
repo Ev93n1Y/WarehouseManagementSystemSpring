@@ -1,10 +1,7 @@
 package application.model.dao;
 
 import jakarta.persistence.*;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Set;
@@ -25,8 +22,9 @@ public class RoleDao {
     @Column(name = "role", length = 100, nullable = false, unique = true)
     private String role;
 
+    @Setter
     @ManyToMany(
-            fetch = FetchType.LAZY
+            fetch = FetchType.EAGER
     )
     @JoinTable(
             name = "user_roles",

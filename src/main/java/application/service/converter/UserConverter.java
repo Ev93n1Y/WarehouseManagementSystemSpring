@@ -4,8 +4,6 @@ import application.model.dao.UserDao;
 import application.model.dto.UserDto;
 import org.springframework.stereotype.Service;
 
-import java.util.stream.Collectors;
-
 @Service
 public class UserConverter implements Convertible<UserDto, UserDao> {
     @Override

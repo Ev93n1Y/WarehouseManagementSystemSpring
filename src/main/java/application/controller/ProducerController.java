@@ -13,11 +13,10 @@ import java.util.UUID;
 @Controller
 @RequestMapping("/producers")
 @RequiredArgsConstructor
-public class ProducerController implements CrudController<ProducerDto> {
+public class ProducerController {
     private final ProducerService service;
 
     @GetMapping
-    @Override
     public ModelAndView get() {
         ModelAndView result = new ModelAndView("producers");
         result.addObject("producers", service.findAll());
@@ -25,7 +24,6 @@ public class ProducerController implements CrudController<ProducerDto> {
     }
 
     @PostMapping
-    @Override
     public RedirectView add(@ModelAttribute("producer") ProducerDto producer) {
         try {
             service.save(producer);
@@ -37,14 +35,12 @@ public class ProducerController implements CrudController<ProducerDto> {
     }
 
     @GetMapping("/delete")
-    @Override
     public RedirectView delete(@RequestParam(name = "id") UUID id) {
         service.deleteById(id);
         return redirectToProducersList();
     }
 
     @GetMapping("/update")
-    @Override
     public RedirectView update(@RequestParam(name = "id") UUID id) {
         ProducerDto dto = new ProducerDto();
         //TODO required update form, temporary works with static new name

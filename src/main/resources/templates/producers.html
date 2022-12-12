@@ -13,7 +13,7 @@
             <h2>Producers</h2><hr>
             <form action="/producers" method="POST">
                 <label>New producer name: </label>
-                <input type="text" name="name">
+                <input type="text" name="name" required>
                 <button type="submit">Add producer</button>
             </form>
             <table style="text-align: center" border="1" width="20%">
@@ -29,13 +29,13 @@
                         <td th:text="${producer.name}"></td>
                         <td>
                             <button th:edit-url="@{/producers/update(id=${producer.id})}"
-                                    onclick="window.open(this.getAttribute('edit-url'))">
+                                    onclick="location.href=this.getAttribute('edit-url')">
                                 Edit
                             </button>
                         </td>
                         <td>
                             <button th:del-url="@{/producers/delete(id=${producer.id})}"
-                                    onclick="window.open(this.getAttribute('del-url'))">
+                                    onclick="location.href=this.getAttribute('del-url')">
                                 Delete
                             </button>
                         </td>

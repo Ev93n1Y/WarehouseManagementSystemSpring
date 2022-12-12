@@ -19,12 +19,11 @@ import java.util.UUID;
 @RequestMapping("/products")
 @RequiredArgsConstructor
 @RestController
-public class ProductController implements CrudController<ProductDto> {
+public class ProductController {
     private final ProductService service;
     private final ProducerService producerService;
 
     @GetMapping
-    @Override
     public ModelAndView get() {
         ModelAndView result = new ModelAndView("products");
         try {
@@ -36,25 +35,18 @@ public class ProductController implements CrudController<ProductDto> {
         return result;
     }
 
-    @Override
-    public RedirectView add(ProductDto productDto) {
-        return null;
-    }
-
     @PostMapping
     public RedirectView add(@ModelAttribute("product") ProductDto product, @ModelAttribute("producerId") UUID id) {
         try {
-            System.err.println("UUID: " + id);
             ProducerDto producer = producerService.findById(id);
             product.setProducer(new ProducerConverter().toDao(producer));
-            System.err.println("Product: " + product);
             service.save(product);
         } catch (Exception e) {
             e.printStackTrace();
             //TODO check duplicate entries
         }
-        //return redirectToProductsList();
-        return redirect("/products");
+        return redirectToProductsList();
+        //return redirect("/products");
     }
 
     @GetMapping("/add")
@@ -69,21 +61,35 @@ public class ProductController implements CrudController<ProductDto> {
     }
 
     @GetMapping("/delete")
-    @Override
     public RedirectView delete(@RequestParam(name = "id") UUID id) {
-        service.deleteById(id);
+        try {
+            service.deleteById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return redirectToProductsList();
     }
 
     @GetMapping("/update")
-    @Override
-    public RedirectView update(@RequestParam(name = "id") UUID id) {
-        ProductDto dto = new ProductDto();
-        //TODO required update form, temporary works with static new name
-        dto.setName("some changed name1");
-        service.save(id, dto);
-        return redirectToProductsList();
+    public ModelAndView edit(@RequestParam(name = "id") UUID id) {
+        ModelAndView result = new ModelAndView("editProductForm");
+        try {
+            result.addObject("product", service.findById(id));
+            result.addObject("producers", producerService.findAll());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
 
+    @PostMapping("/update")
+    public RedirectView update(@ModelAttribute("product") ProductDto product) {
+        try {
+            service.save(product.getId(), product);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return redirectToProductsList();
     }
 
 

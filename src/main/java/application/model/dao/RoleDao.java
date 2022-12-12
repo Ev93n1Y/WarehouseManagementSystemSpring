@@ -33,8 +33,9 @@ public class RoleDao {
     )
     private Set<UserDao> users;
 
-    public RoleDao(UUID id, String role) {
+    public RoleDao(UUID id, String role, Set<UserDao> users) {
         this.id = id;
         this.role = role;
+        this.users = users;
     }
 }

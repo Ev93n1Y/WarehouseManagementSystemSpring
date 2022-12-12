@@ -15,6 +15,7 @@ public class ProductConverter implements Convertible<ProductDto, ProductDao> {
         productDto.setName(productDao.getName());
         productDto.setPrice(productDao.getPrice());
         productDto.setProducer(productDao.getProducer());
+        //productDto.setProducer(new ProducerConverter().toDto(productDao.getProducer()));
         return productDto;
     }
 
@@ -25,8 +26,7 @@ public class ProductConverter implements Convertible<ProductDto, ProductDao> {
                 productDto.getName(),
                 productDto.getPrice(),
                 productDto.getProducer()
+                //new ProducerConverter().toDao(productDto.getProducer())
         );
-        //productDao.setProducer(new ProducerConverter().toDao(productDto.getProducer()));
-        //return productDao;
     }
 }

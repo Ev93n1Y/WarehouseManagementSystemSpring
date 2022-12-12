@@ -2,8 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Products</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
+    <div th:replace="~{fragments/navbar::navigation}">...</div>
     <div th:switch="${products}">
         <h2 th:case="null">There is no products!</h2>
         <div th:case="*">
@@ -25,7 +28,7 @@
                         <td th:text="${product.id}"></td>
                         <td th:text="${product.name}"></td>
                         <td th:text="${product.price}"></td>
-                        <td th:text="${product.producer}"></td>
+                        <td th:text="${product.producer.name}"></td>
                         <td>
                             <button th:edit-url="@{/products/update(id=${product.id})}"
                                     onclick="window.open(this.getAttribute('edit-url'))">
@@ -42,16 +45,6 @@
                 </tbody>
             </table>
         </div><br>
-        <form action="/products" method="POST">
-            <label>New product name: </label>
-            <input type="text" name="name"><br>
-            <label>price: </label>
-            <input type="number" name="price" step="0.01" min="0"  max="9999999999" style="margin-left:90px; width:140px">
-            <button type="submit">Add product</button><br>
-            <select name="producer" style="width:140px; margin-left:80px">
-                <option th:each="producer : ${producers}" th:value="${producer}" th:text="${producer}"></option>
-            </select>
-        </form>
     </div>
 </body>
 </html>

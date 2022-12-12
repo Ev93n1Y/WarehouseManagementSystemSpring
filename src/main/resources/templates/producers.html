@@ -2,12 +2,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Producers</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
+    <div th:replace="~{fragments/navbar::navigation}">...</div>
     <div th:switch="${producers}">
         <h2 th:case="null">There is no producers!</h2>
         <div th:case="*">
-            <h2>Producers</h2>
+            <h2>Producers</h2><hr>
+            <form action="/producers" method="POST">
+                <label>New producer name: </label>
+                <input type="text" name="name">
+                <button type="submit">Add producer</button>
+            </form>
             <table style="text-align: center" border="1" width="20%">
                 <thead>
                     <tr>
@@ -35,11 +43,6 @@
                 </tbody>
             </table>
         </div><br>
-        <form action="/producers" method="POST">
-            <label>New producer name: </label>
-            <input type="text" name="name">
-            <button type="submit">Add producer</button>
-        </form>
     </div>
 </body>
 </html>

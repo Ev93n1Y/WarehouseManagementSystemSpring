@@ -44,16 +44,17 @@ public class ProductController implements CrudController<ProductDto> {
     @PostMapping
     public RedirectView add(@ModelAttribute("product") ProductDto product, @ModelAttribute("producerId") UUID id) {
         try {
-            System.err.println(id);
-            //System.out.println(producer);
-            //product.setProducer(new ProducerConverter().toDao(producer));
-            //service.save(product);
+            System.err.println("UUID: " + id);
+            ProducerDto producer = producerService.findById(id);
+            product.setProducer(new ProducerConverter().toDao(producer));
+            System.err.println("Product: " + product);
+            service.save(product);
         } catch (Exception e) {
             e.printStackTrace();
             //TODO check duplicate entries
         }
         //return redirectToProductsList();
-        return redirect("/product");
+        return redirect("/products");
     }
 
     @GetMapping("/add")

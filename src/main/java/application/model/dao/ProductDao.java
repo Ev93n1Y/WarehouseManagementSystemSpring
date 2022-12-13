@@ -26,10 +26,7 @@ public class ProductDao {
     private BigDecimal price;
 
     @Setter
-    @ManyToOne(
-            //fetch = FetchType.EAGER,
-            //cascade = {CascadeType.MERGE}
-    )
+    @ManyToOne()
     @JoinColumn(name = "producer_id")
     private ProducerDao producer;
 
@@ -39,13 +36,4 @@ public class ProductDao {
         this.price = price;
         this.producer = producer;
     }
-
-    /*CREATE TABLE products
-            (
-                    id          UUID         PRIMARY KEY ,
-                    name        VARCHAR(100) NOT NULL,
-                    price       DECIMAL(10, 2),
-                    producer_id UUID,
-    --CONSTRAINT pk_products PRIMARY KEY (id)
-    */
 }

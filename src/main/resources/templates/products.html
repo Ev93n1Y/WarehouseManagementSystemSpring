@@ -2,8 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Products</title>
-    <link rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
     <div th:replace="~{fragments/navbar::navigation}">...</div>
@@ -17,10 +18,10 @@
             <table style="text-align: center" border="1" width="40%">
                 <thead>
                     <tr>
-                        <th>id</th>
-                        <th>name</th>
-                        <th>price</th>
-                        <th>producer</th>
+                        <th style="text-align: center">id</th>
+                        <th style="text-align: center">name</th>
+                        <th style="text-align: center">price</th>
+                        <th style="text-align: center">producer</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,7 +29,7 @@
                         <td th:text="${product.id}"></td>
                         <td th:text="${product.name}"></td>
                         <td th:text="${product.price}"></td>
-                        <td th:text="${product.producer.name}"></td>
+                        <td th:text="${product.producer?.name}"></td>
                         <td>
                             <button th:edit-url="@{/products/update(id=${product.id})}"
                                     onclick="location.href=this.getAttribute('edit-url')">

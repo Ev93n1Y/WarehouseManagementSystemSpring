@@ -13,7 +13,7 @@ import org.springframework.security.provisioning.UserDetailsManager;
 
 import javax.sql.DataSource;
 
-@Configuration
+//@Configuration
 public class SecurityConfiguration {
     /*@Bean
     public DataSource dataSource() {
@@ -23,7 +23,7 @@ public class SecurityConfiguration {
                 .build();
     }*/
 
-    @Bean
+    //@Bean
     public UserDetailsManager users(DataSource dataSource) {
         UserDetails user = User.withDefaultPasswordEncoder()
                 .username("email")

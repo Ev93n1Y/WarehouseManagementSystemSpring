@@ -8,5 +8,8 @@
     </head>
     <body>
         <div th:replace="~{fragments/navbar::navigation}">...</div>
+        Logged as:
+        Name: <p2 sec:authentication="name"></p2>
+        Role: <p2 sec:authentication="principal.authorities">[ROLE_USER, ROLE_ADMIN]</p2><hr>
     </body>
 </html>

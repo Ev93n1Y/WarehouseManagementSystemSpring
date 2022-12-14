@@ -5,6 +5,7 @@ import application.service.RoleService;
 import application.service.UserService;
 import application.service.converter.RoleConverter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,6 +21,7 @@ import java.util.UUID;
 public class UserController {
     private final UserService service;
     private final RoleService roleService;
+    private final PasswordEncoder encoder;
 
     @GetMapping
     public ModelAndView get() {
@@ -37,6 +39,7 @@ public class UserController {
         try {
             user.setRoles(new HashSet<>());
             user.getRoles().add(new RoleConverter().toDao(roleService.findById(roleId)));
+            user.setPassword(encoder.encode(user.getPassword()));
             service.save(user);
         } catch (Exception e) {
             e.printStackTrace();

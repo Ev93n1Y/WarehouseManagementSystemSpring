@@ -15,21 +15,17 @@ VALUES
 
 INSERT INTO roles(id,role)
 VALUES
-('6adc7b2b-7b5f-40f1-9638-f44d3ff55e9d', 'Admin'),
-('9ca9dce6-65df-4648-a732-6dbb75164489', 'User');
+('6adc7b2b-7b5f-40f1-9638-f44d3ff55e9d', 'ROLE_ADMIN'),
+('9ca9dce6-65df-4648-a732-6dbb75164489', 'ROLE_USER');
 
-INSERT INTO users(id,email,password,last_name, first_name, enabled)
+INSERT INTO users(id,email,password,last_name, first_name)
 VALUES
-('bd7f5245-f212-4530-a83a-2861d0786356','admin1@gmail.com', '$2a$10$oHm5ZM8iHxh7KZKSRwK7hukYTst/qYSegA/60GEHtYP8kQz3dsLXq', 'first 1', 'last 1', 'true'),
-('7b9e48e6-9c39-4d95-87eb-39381746557e', 'user1@gmail.com', 'pass',	'first 1', 'last 1', 'true'),
-('b3b9cfbf-cdcf-4ec7-aa31-4a0ea81c1fa5', 'user2@gmail.com',	'pass',	'first 2', 'last 2', 'true'),
-('48c63593-9b37-47c8-8b0d-a4b56dd99fdc', 'user3@gmail.com',	'pass', 'first 3', 'last 3', 'true');
+('bd7f5245-f212-4530-a83a-2861d0786356','admin', '$2a$10$oHm5ZM8iHxh7KZKSRwK7hukYTst/qYSegA/60GEHtYP8kQz3dsLXq', 'first 1', 'last 1'),
+('7b9e48e6-9c39-4d95-87eb-39381746557e','user', '$2a$10$8PMEvzIIatqAOvyWWD5YMuujHDnoI3iui4GZhD.kG7ft30fdgYPu2', 'first 1', 'last 1');
 INSERT INTO user_roles(role_id,user_id)
 VALUES
 ('6adc7b2b-7b5f-40f1-9638-f44d3ff55e9d', 'bd7f5245-f212-4530-a83a-2861d0786356'),
-('9ca9dce6-65df-4648-a732-6dbb75164489', '7b9e48e6-9c39-4d95-87eb-39381746557e'),
-('9ca9dce6-65df-4648-a732-6dbb75164489', 'b3b9cfbf-cdcf-4ec7-aa31-4a0ea81c1fa5'),
-('9ca9dce6-65df-4648-a732-6dbb75164489', '48c63593-9b37-47c8-8b0d-a4b56dd99fdc');
+('9ca9dce6-65df-4648-a732-6dbb75164489', '7b9e48e6-9c39-4d95-87eb-39381746557e');
 
 create table auth
 (

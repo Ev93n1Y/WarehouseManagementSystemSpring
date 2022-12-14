@@ -12,7 +12,7 @@
         <h2 th:case="null">There is no products!</h2>
         <div th:case="*">
             <h2>Products</h2><hr>
-            <form action="/products/add" method="GET">
+            <form  sec:authorize="hasRole('ROLE_ADMIN')" action="/products/add" method="GET">
                 <button type="submit">Add new product</button><br>
             </form>
             <table style="text-align: center" border="1" width="40%">
@@ -30,18 +30,20 @@
                         <td th:text="${product.name}"></td>
                         <td th:text="${product.price}"></td>
                         <td th:text="${product.producer?.name}"></td>
-                        <td>
-                            <button th:edit-url="@{/products/update(id=${product.id})}"
-                                    onclick="location.href=this.getAttribute('edit-url')">
-                                Edit
-                            </button>
-                        </td>
-                        <td>
-                            <button th:del-url="@{/products/delete(id=${product.id})}"
-                                    onclick="location.href=this.getAttribute('del-url')">
-                                Delete
-                            </button>
-                        </td>
+                        <div sec:authorize="hasRole('ROLE_ADMIN')">
+                            <td>
+                                <button th:edit-url="@{/products/update(id=${product.id})}"
+                                        onclick="location.href=this.getAttribute('edit-url')">
+                                    Edit
+                                </button>
+                            </td>
+                            <td>
+                                <button th:del-url="@{/products/delete(id=${product.id})}"
+                                        onclick="location.href=this.getAttribute('del-url')">
+                                    Delete
+                                </button>
+                            </td>
+                        </div>
                     </tr>
                 </tbody>
             </table>

@@ -1,7 +1,7 @@
 package application.model.dto;
 
 import application.model.dao.UserDao;
-import javax.validation.constraints.Size;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;

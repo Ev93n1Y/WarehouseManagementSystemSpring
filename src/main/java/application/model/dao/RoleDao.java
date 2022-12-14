@@ -2,7 +2,7 @@ package application.model.dao;
 
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 import java.util.Set;
 import java.util.UUID;

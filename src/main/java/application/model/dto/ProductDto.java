@@ -1,10 +1,8 @@
 package application.model.dto;
 
 import application.model.dao.ProducerDao;
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import jakarta.validation.constraints.*;
+
 import lombok.*;
 
 import java.math.BigDecimal;

@@ -5,6 +5,7 @@ VALUES
 ('55c52f24-1b16-466a-b0c2-15bfa07f43a2', 'producer 3'),
 ('223bc791-6210-468e-851b-db7fe378f3e9', 'producer 4'),
 ('5f0e6f6e-39a8-4403-b3bf-c5b28ff4a5b5', 'producer 5');
+
 INSERT INTO products(id,name,price,producer_id)
 VALUES
 ('02da85bd-ae0a-4840-90ec-d2b825e7e7a2', 'product 1', '0.12', 'b764b65f-f32f-410f-bae8-072e888ed766'),
@@ -22,19 +23,11 @@ INSERT INTO users(id,email,password,last_name, first_name)
 VALUES
 ('bd7f5245-f212-4530-a83a-2861d0786356','admin', '$2a$10$oHm5ZM8iHxh7KZKSRwK7hukYTst/qYSegA/60GEHtYP8kQz3dsLXq', 'first 1', 'last 1'),
 ('7b9e48e6-9c39-4d95-87eb-39381746557e','user', '$2a$10$8PMEvzIIatqAOvyWWD5YMuujHDnoI3iui4GZhD.kG7ft30fdgYPu2', 'first 1', 'last 1');
+
 INSERT INTO user_roles(role_id,user_id)
 VALUES
 ('6adc7b2b-7b5f-40f1-9638-f44d3ff55e9d', 'bd7f5245-f212-4530-a83a-2861d0786356'),
 ('9ca9dce6-65df-4648-a732-6dbb75164489', '7b9e48e6-9c39-4d95-87eb-39381746557e');
-
-create table auth
-(
-    email     VARCHAR(100) NOT NULL,
-    role      VARCHAR(100) NOT NULL
-);
-insert into auth(email, role)
-values
-('admin1@gmail.com', 'Admin')
 
 
 

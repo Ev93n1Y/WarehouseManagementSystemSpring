@@ -1,0 +1,55 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Users</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div th:replace="~{fragments/navbar::navigation}">...</div>
+    <div th:switch="${users}">
+        <h2 th:case="null">There is no users!</h2>
+        <div th:case="*">
+            <h2>Users</h2><hr>
+            <form action="/users/add" method="GET">
+                <button type="submit">Add new user</button><br>
+            </form>
+            <table style="text-align: center" border="1" width="40%">
+                <thead>
+                    <tr>
+                        <th style="text-align: center">id</th>
+                        <th style="text-align: center">email</th>
+                        <th style="text-align: center">password</th>
+                        <th style="text-align: center">first name</th>
+                        <th style="text-align: center">last name</th>
+                        <th style="text-align: center">user role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="user : ${users}">
+                        <td th:text="${user.id}"></td>
+                        <td th:text="${user.email}"></td>
+                        <td th:text="${user.password}"></td>
+                        <td th:text="${user.firstName}"></td>
+                        <td th:text="${user.lastName}"></td>
+                        <td th:each="role : ${user.roles}" th:value="${role.role}" th:text="${role.role}"></td>
+                        <td>
+                            <button th:edit-url="@{/users/update(id=${user.id})}"
+                                    onclick="location.href=this.getAttribute('edit-url')">
+                                Edit
+                            </button>
+                        </td>
+                        <td>
+                            <button th:del-url="@{/users/delete(id=${user.id})}"
+                                    onclick="location.href=this.getAttribute('del-url')">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div><br>
+    </div>
+</body>
+</html>

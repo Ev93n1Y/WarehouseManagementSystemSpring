@@ -23,8 +23,8 @@ public class RoleDao {
     private String role;
 
     @Setter
-    @ManyToMany(
-            fetch = FetchType.LAZY
+    @ManyToMany(fetch=FetchType.EAGER
+            //fetch = FetchType.LAZY
     )
     @JoinTable(
             name = "user_roles",

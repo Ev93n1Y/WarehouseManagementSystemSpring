@@ -34,6 +34,10 @@ public class UserService implements CrudService<UserDto>{
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
+    public UserDto findByEmail(String email) {
+        return converter.toDto(repository.findByEmail(email));
+    }
+
     @Override
     public UserDto save(UserDto userDto) {
         return converter.toDto(repository.save(converter.toDao(userDto)));

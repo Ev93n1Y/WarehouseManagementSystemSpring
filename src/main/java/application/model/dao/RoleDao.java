@@ -23,9 +23,7 @@ public class RoleDao {
     private String role;
 
     @Setter
-    @ManyToMany(fetch = FetchType.EAGER
-            //fetch = FetchType.LAZY
-    )
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_roles",
             inverseJoinColumns = @JoinColumn(name = "user_id"),

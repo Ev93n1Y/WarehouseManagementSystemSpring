@@ -1,11 +1,9 @@
 package application.controller;
 
-import application.model.dao.ProducerDao;
 import application.model.dto.ProducerDto;
 import application.model.dto.ProductDto;
 import application.service.ProducerService;
 import application.service.converter.ProducerConverter;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -46,7 +44,6 @@ public class ProductController {
             //TODO check duplicate entries
         }
         return redirectToProductsList();
-        //return redirect("/products");
     }
 
     @GetMapping("/add")
@@ -71,7 +68,7 @@ public class ProductController {
     }
 
     @GetMapping("/update")
-    public ModelAndView edit(@RequestParam(name = "id") UUID id) {
+    public ModelAndView editForm(@RequestParam(name = "id") UUID id) {
         ModelAndView result = new ModelAndView("editProductForm");
         try {
             result.addObject("product", service.findById(id));
@@ -83,8 +80,9 @@ public class ProductController {
     }
 
     @PostMapping("/update")
-    public RedirectView update(@ModelAttribute("product") ProductDto product) {
+    public RedirectView update(@ModelAttribute("product") ProductDto product, @ModelAttribute("producerId") UUID id) {
         try {
+            product.setProducer(new ProducerConverter().toDao(producerService.findById(id)));
             service.save(product.getId(), product);
         } catch (Exception e) {
             e.printStackTrace();
@@ -94,7 +92,6 @@ public class ProductController {
 
 
     private RedirectView redirectToProductsList() {
-        //return new RedirectView("/products");
         return redirect("/products");
     }
 

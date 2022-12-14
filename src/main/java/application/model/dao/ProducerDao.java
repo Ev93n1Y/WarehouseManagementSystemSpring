@@ -24,10 +24,7 @@ public class ProducerDao {
     private String name;
 
     @Setter
-    @OneToMany(
-            fetch = FetchType.EAGER,
-            cascade = {CascadeType.MERGE}
-    )
+    @OneToMany()
     @JoinColumn(name = "producer_id")
     private Set<ProductDao> products;
 

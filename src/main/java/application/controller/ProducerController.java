@@ -41,13 +41,24 @@ public class ProducerController {
     }
 
     @GetMapping("/update")
-    public RedirectView update(@RequestParam(name = "id") UUID id) {
-        ProducerDto dto = new ProducerDto();
-        //TODO required update form, temporary works with static new name
-        dto.setName("some changed name1");
-        service.save(id, dto);
-        return redirectToProducersList();
+    public ModelAndView editForm(@RequestParam(name = "id") UUID id) {
+        ModelAndView result = new ModelAndView("editProducerForm");
+        try{
+            result.addObject("producer", service.findById(id));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return result;
+    }
 
+    @PostMapping("/update")
+    public RedirectView update(@ModelAttribute("producer") ProducerDto producer) {
+        try {
+            service.save(producer.getId(), producer);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return redirectToProducersList();
     }
 
     private RedirectView redirectToProducersList() {

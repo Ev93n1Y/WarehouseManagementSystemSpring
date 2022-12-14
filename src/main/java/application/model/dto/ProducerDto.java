@@ -1,8 +1,8 @@
 package application.model.dto;
 
 import application.model.dao.ProductDao;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import lombok.*;
 
 import java.util.Set;

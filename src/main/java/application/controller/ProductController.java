@@ -1,11 +1,9 @@
 package application.controller;
 
-import application.model.dao.ProducerDao;
 import application.model.dto.ProducerDto;
 import application.model.dto.ProductDto;
 import application.service.ProducerService;
 import application.service.converter.ProducerConverter;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -46,7 +44,6 @@ public class ProductController {
             //TODO check duplicate entries
         }
         return redirectToProductsList();
-        //return redirect("/products");
     }
 
     @GetMapping("/add")

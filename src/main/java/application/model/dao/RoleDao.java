@@ -1,8 +1,8 @@
 package application.model.dao;
 
-import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
+import javax.persistence.*;
 
 import java.util.Set;
 import java.util.UUID;
@@ -23,7 +23,7 @@ public class RoleDao {
     private String role;
 
     @Setter
-    @ManyToMany(fetch=FetchType.EAGER
+    @ManyToMany(fetch = FetchType.EAGER
             //fetch = FetchType.LAZY
     )
     @JoinTable(

@@ -2,24 +2,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Products</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
     <div th:replace="~{fragments/navbar::navigation}">...</div>
     <h2>Update product: </h2><hr>
     <form action="/products/update" method="POST">
-        <label>id: </label>
-        <label th:text="${product.id}"></label><br>
-        <input type="hidden" name="id" th:value="${product.id}">
         <label>name: </label>
-        <input type="text" name="name" style="margin-left:34px; width:250px" th:value="${product.name}"><br>
+        <input type="text" name="name" style="margin-left:32px; width:133px" th:value="${product.name}"><br>
         <label>price: </label>
         <input type="number" name="price" step="0.01" min="0"  max="9999999999" th:value="${product.price}"
-               style="margin-left:39px; width:250px"><br>
+               style="margin-left:35px; width:133px"><br>
         <label>producer: </label>
-        <select name="producerId" th:value="${product.producer.id}" style="margin-left:10px; width:250px">
+        <select name="producerId" th:value="${product.producer}" style="margin-left:10px; width:140px">
             <option th:each="producer : ${producers}" th:value="${producer.id}" th:text="${producer.name}"></option>
         </select>
         <button type="submit">Save product</button><br>

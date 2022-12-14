@@ -26,5 +26,8 @@ public class ProductDto {
     @Digits(integer = 10, fraction = 2)
     private BigDecimal price;
 
+    //@NotNull(message = "Producer must be select")
+    //private UUID producer_id;
+
     private ProducerDao producer;
 }

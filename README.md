@@ -5,33 +5,39 @@ You need to create a web application that allows you to:
     Perform user registration
     Perform user authorization
     Perform CRUD operations on the following objects:
-==============================================================================
+
+
 Product: 
 	UUID; 
 	String name; 
 	BigDecimal price; 
 	Producer of the product;
-==============================================================================
+
+
 Producer: 
 	UUID; 
 	String name; 
 	List of products;
-==============================================================================
+
+
 Role 
 	UUID; 
 	String name;
-==============================================================================
-user
+
+
+User
 	UUID; 
 	String email address; 
 	String password; 
 	String firstName; 
 	String lastName; 
 	List of roles;
-==============================================================================
+
+
 User roles:
     Admin - perform all CRUD operations
     User - read-only access
+    
 
 The database stores data about producers and products. 
 Each product has one producer, and each producer has a list of products.
@@ -41,10 +47,12 @@ Pages:
     Products (list of products, the ability to create new, edit and delete created products)
     Users (a list of all users of the application, the ability to create new, 
 	edit and delete created users) - ONLY for ADMIN (and reading and editing)
-==============================================================================
+
+
 Used technologies: Java, SQL, Spring (MVC, Data, Security, Spring Boot), 
 JSP or (HTML and CSS and JS or React Angular), Maven, Tomcat, Git
-==============================================================================
+
+
 
 
 Instructions:

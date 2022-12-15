@@ -27,8 +27,8 @@ public class UserConverter implements Convertible<UserDto, UserDao> {
                 userDto.getId(),
                 userDto.getEmail(),
                 userDto.getPassword(),
-                userDto.getLastName(),
                 userDto.getFirstName(),
+                userDto.getLastName(),
                 userDto.getRoles()
                 //userDto.getRoles().stream()
                 //        .map(new RoleConverter()::toDao)

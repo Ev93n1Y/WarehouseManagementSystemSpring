@@ -11,16 +11,16 @@
     <h2>Add new user: </h2><hr>
     <form action="/users" method="POST">
         <label>email: </label>
-        <input type="text" name="email" style="margin-left:32px; width:133px" ><br>
+        <input type="text" name="email" style="margin-left:65px; width:133px" ><br>
         <label>password: </label>
         <input type="text" name="password" style="margin-left:32px; width:133px" ><br>
         <label>first name: </label>
-        <input type="text" name="firstName" style="margin-left:32px; width:133px" ><br>
+        <input type="text" name="firstName" style="margin-left:31px; width:133px" ><br>
         <label>last name: </label>
         <input type="text" name="lastName" style="margin-left:32px; width:133px" ><br>
 
         <label>role: </label>
-        <select name="roleId" style="margin-left:10px; width:140px">
+        <select name="roleId" style="margin-left:70px; width:140px">
             <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.role}"></option>
         </select>
         <button type="submit">Save user</button><br>

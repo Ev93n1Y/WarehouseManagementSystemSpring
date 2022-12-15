@@ -20,12 +20,12 @@ Producer:
 	List of products;
 
 
-Role 
+Role: 
 	UUID; 
 	String name;
 
 
-User
+User:
 	UUID; 
 	String email address; 
 	String password; 

@@ -49,7 +49,7 @@ public class UserController {
 
     @GetMapping("/add")
     public ModelAndView addForm() {
-        ModelAndView result = new ModelAndView("userForm");
+        ModelAndView result = new ModelAndView("addUser");
         try {
             result.addObject("roles", roleService.findAll());
         } catch (Exception e) {
@@ -70,7 +70,7 @@ public class UserController {
 
     @GetMapping("/update")
     public ModelAndView editForm(@RequestParam(name = "id") UUID id) {
-        ModelAndView result = new ModelAndView("editUserForm");
+        ModelAndView result = new ModelAndView("editUser");
         try {
             result.addObject("user", service.findById(id));
             result.addObject("roles", roleService.findAll());

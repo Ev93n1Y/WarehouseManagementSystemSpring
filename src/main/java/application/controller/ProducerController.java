@@ -42,7 +42,7 @@ public class ProducerController {
 
     @GetMapping("/update")
     public ModelAndView editForm(@RequestParam(name = "id") UUID id) {
-        ModelAndView result = new ModelAndView("editProducerForm");
+        ModelAndView result = new ModelAndView("editProducer");
         try{
             result.addObject("producer", service.findById(id));
         }catch (Exception e){

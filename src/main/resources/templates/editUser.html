@@ -1,0 +1,17 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit user</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div th:replace="~{fragments/navbar::navigation}">...</div>
+    <h2>Update user: </h2><hr>
+    <form action="/users/update" method="POST">
+        <div th:replace="~{form::editUser}">...</div>
+        <button type="submit">Save user</button><br>
+    </form>`
+</body>
+</html>

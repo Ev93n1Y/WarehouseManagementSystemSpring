@@ -48,7 +48,7 @@ public class ProductController {
 
     @GetMapping("/add")
     public ModelAndView addForm() {
-        ModelAndView result = new ModelAndView("productForm");
+        ModelAndView result = new ModelAndView("addProduct");
         try {
             result.addObject("producers", producerService.findAll());
         } catch (Exception e) {
@@ -69,7 +69,7 @@ public class ProductController {
 
     @GetMapping("/update")
     public ModelAndView editForm(@RequestParam(name = "id") UUID id) {
-        ModelAndView result = new ModelAndView("editProductForm");
+        ModelAndView result = new ModelAndView("editProduct");
         try {
             result.addObject("product", service.findById(id));
             result.addObject("producers", producerService.findAll());

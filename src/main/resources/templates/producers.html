@@ -13,8 +13,8 @@
         <div th:case="*">
             <h2>Producers</h2><hr>
             <form sec:authorize="hasRole('ROLE_ADMIN')" action="/producers" method="POST">
-                <label>New producer name: </label>
-                <input type="text" name="name" required>
+                <label>New Producer</label>
+                <div th:replace="~{form::newProducer}">...</div>
                 <button type="submit">Add producer</button>
             </form>
             <table style="text-align: center" border="1" width="40%">

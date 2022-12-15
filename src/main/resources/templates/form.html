@@ -1,0 +1,55 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+
+    <div th:fragment="editUser">
+        <label>id: </label>
+        <label th:text="${user.id}"></label><br>
+        <input type="hidden" name="id" th:value="${user.id}">
+        <div th:replace="~{form::newUser}">...</div>
+    </div>
+    <div th:fragment="newUser">
+        <label>email: </label>
+        <input type="text" name="email" style="margin-left:34px; width:250px"  th:value="${user?.email}"><br>
+        <label>password: </label>
+        <input type="text" name="password" style="margin-left:2px; width:250px"  th:value="${user?.password}"><br>
+        <label>first name: </label>
+        <input type="text" name="firstName" style=" width:250px" th:value="${user?.firstName}"><br>
+        <label>last name: </label>
+        <input type="text" name="lastName" style="margin-left:2px; width:250px" th:value="${user?.lastName}"><br>
+        <label>role: </label>
+        <select name="roleId" style="margin-left:40px; width:250px">
+            <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.role}"></option>
+        </select>
+    </div>
+    <div th:fragment="editProduct">
+        <label>id: </label>
+        <label th:text="${product.id}" style="margin-left:60px; width:500px"></label><br>
+        <input type="hidden" name="id" th:value="${product.id}">
+        <div th:replace="~{form::newProduct}">...</div>
+    </div>
+    <div th:fragment="newProduct">
+        <label>name: </label>
+        <input type="text" name="name" style="margin-left:32px; width:250px" th:value="${product?.name}" required><br>
+        <label>price: </label>
+        <input type="number" name="price" step="0.01" min="0" max="9999999999"
+               style="margin-left:34px; width:250px" th:value="${product?.price}" required><br>
+        <label>producer: </label>
+        <select name="producerId" style="margin-left:5px; width:250px" size="1" th:value="${product?.producer?.id}">
+            <option th:each="producer : ${producers}" th:value="${producer.id}" th:text="${producer.name}"></option>
+        </select>
+    </div>
+    <div th:fragment="editProducer">
+        <label>id: </label>
+        <label th:text="${producer.id}" style="margin-left:26px; width:500px"></label><br>
+        <input type="hidden" name="id" th:value="${producer.id}">
+        <div th:replace="~{form::newProducer}">...</div>
+    </div>
+    <div th:fragment="newProducer">
+        <label>name: </label>
+        <input type="text" name="name" style="width:250px" th:value="${producer?.name}" required>
+    </div>
+</body>
+

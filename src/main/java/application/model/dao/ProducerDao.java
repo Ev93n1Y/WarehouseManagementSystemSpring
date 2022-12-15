@@ -24,7 +24,7 @@ public class ProducerDao {
     private String name;
 
     @Setter
-    @OneToMany()
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.REFRESH,CascadeType.DETACH})
     @JoinColumn(name = "producer_id")
     private Set<ProductDao> products;
 

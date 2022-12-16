@@ -8,7 +8,22 @@
         <label>id: </label>
         <label th:text="${user.id}"></label><br>
         <input type="hidden" name="id" th:value="${user.id}">
-        <div th:replace="~{form::newUser}">...</div>
+        <label>email: </label>
+        <input type="text" name="email" style="margin-left:34px; width:250px"  th:value="${user?.email}"><br>
+        <label>password: </label>
+        <input type="text" name="password" style="margin-left:2px; width:250px"  th:value="${user?.password}"><br>
+        <label>first name: </label>
+        <input type="text" name="firstName" style=" width:250px" th:value="${user?.firstName}"><br>
+        <label>last name: </label>
+        <input type="text" name="lastName" style="margin-left:2px; width:250px" th:value="${user?.lastName}"><br>
+        <label>role: </label>
+        <select name="roleId" style="margin-left:40px; width:250px">
+            <option th:each="role : ${roles}"
+                    th:value="${role.id}"
+                    th:text="${role.role}"
+                    th:selected="${user?.roles[0]?.id} == ${role?.id} ? true : false" >
+            </option>
+        </select>
     </div>
     <div th:fragment="newUser">
         <label>email: </label>
@@ -20,12 +35,10 @@
         <label>last name: </label>
         <input type="text" name="lastName" style="margin-left:2px; width:250px" th:value="${user?.lastName}"><br>
         <label>role: </label>
-
         <select name="roleId" style="margin-left:40px; width:250px">
             <option th:each="role : ${roles}"
                     th:value="${role.id}"
-                    th:text="${role.role}"
-                    th:selected="${user.roles[0].id} == ${role?.id} ? true : false" >
+                    th:text="${role.role}">
             </option>
         </select>
     </div>

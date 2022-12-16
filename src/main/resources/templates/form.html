@@ -20,8 +20,13 @@
         <label>last name: </label>
         <input type="text" name="lastName" style="margin-left:2px; width:250px" th:value="${user?.lastName}"><br>
         <label>role: </label>
+
         <select name="roleId" style="margin-left:40px; width:250px">
-            <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.role}"></option>
+            <option th:each="role : ${roles}"
+                    th:value="${role.id}"
+                    th:text="${role.role}"
+                    th:selected="${user.roles[0].id} == ${role?.id} ? true : false" >
+            </option>
         </select>
     </div>
     <div th:fragment="editProduct">
@@ -38,7 +43,10 @@
                style="margin-left:34px; width:250px" th:value="${product?.price}" required><br>
         <label>producer: </label>
         <select name="producerId" style="margin-left:5px; width:250px" size="1" th:value="${product?.producer?.id}">
-            <option th:each="producer : ${producers}" th:value="${producer.id}" th:text="${producer.name}"></option>
+            <option th:each="producer : ${producers}"
+                    th:value="${producer.id}"
+                    th:text="${producer.name}"
+                    th:selected="${product?.producer?.id} == ${producer?.id} ? true : false"></option>
         </select>
     </div>
     <div th:fragment="editProducer">

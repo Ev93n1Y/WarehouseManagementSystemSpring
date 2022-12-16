@@ -1,6 +1,7 @@
 package application.controller;
 
 import application.model.dto.ProducerDto;
+import application.model.dto.ProductDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -54,7 +55,9 @@ public class ProducerController {
     @PostMapping("/update")
     public RedirectView update(@ModelAttribute("producer") ProducerDto producer) {
         try {
-            service.save(producer.getId(), producer);
+            ProducerDto oldProducer = service.findById(producer.getId());
+            producer.setProducts(oldProducer.getProducts());
+            ProducerDto newProducer = service.save(producer.getId(), producer);
         } catch (Exception e) {
             e.printStackTrace();
         }
